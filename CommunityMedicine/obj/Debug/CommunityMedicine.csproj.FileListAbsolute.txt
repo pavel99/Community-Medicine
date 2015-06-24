@@ -1,0 +1,24 @@
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll.config
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.pdb
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.csprojResolveAssemblyReference.cache
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.dll
+E:\Mizan\June'15\20.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.pdb
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.csprojResolveAssemblyReference.cache
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.dll
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.pdb
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll.config
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll
+E:\SEIP Training\Project\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.pdb
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll.config
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.pdb
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.csprojResolveAssemblyReference.cache
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.dll
+E:\Mizan\June'15\22.06.15\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.pdb
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll.config
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.dll
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\CommunityMedicine.pdb
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.csprojResolveAssemblyReference.cache
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.dll
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.pdb

@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CommunityMedicine.master.cs" Inherits="CommunityMedicine.CommunityMedicine" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+   <%-- <link href="../Content/reset.css" rel="stylesheet" />--%>
+    <%--<link href="../Content/style.css" rel="stylesheet" />--%>
+    <link href="../Content/styles.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="wrapper">
+        <div class="header">
+            <h1>
+                Community Medicine Automation
+            </h1>
+        </div>
+        
+        <nav id="primary_nav_wrap">
+            <ul>
+                
+                <li class="current-menu-item"><a href="Home.aspx">Home</a></li>
+                <li>
+                    <a href="#">Tasks</a>
+                    <ul>
+                        <li><a href="MedicineEntryPage.aspx">Medicine Entry</a></li>
+                        <li><a href="DiseaseEntryPage.aspx">Disease Entry</a></li>
+                        <li><a href="CenterEntryPage.aspx">CenterEntry </a></li>
+                        <li><a href="SendMedicinePage.aspx">Send Medicine</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="#">Disease-Wise Report</a> </li>
+                <li><a href="#">Disease Demographic Report</a></li>
+                <li><a href="#">All Disease Bar Chart </a></li>
+                <li><a href="CenterLoginPage.aspx">Center Login</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
+            </asp:ContentPlaceHolder>
+                
+               
+           
+        </div>
+        <footer> Design By RGB </footer>
+    </div>
+    </form>
+</body>
+</html>

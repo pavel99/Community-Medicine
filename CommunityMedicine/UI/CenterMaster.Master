@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CenterMaster.master.cs" Inherits="CommunityMedicine.UI.CenterMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <%--<link href="../Content/styles.css" rel="stylesheet" />--%>
+    <link href="../Content/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        
+            <div class="wrapper">
+        
+            <div class="header">
+                <h1>Community Medicine Automation</h1>
+            </div>
+            
+        
+        <nav id="primary_nav_wrap">
+            <ul>
+
+                <li class="current-menu-item"><a href="#">Home</a></li>
+                <li>
+                    <a href="#">Tasks</a>
+                    <ul>
+                        <li><a href="DoctorEntryPage.aspx">Doctor Entry</a></li>
+                        <li><a href="MedicineStockReport.aspx">Medicine Stock Report</a></li>
+                        <li><a href="#">Treatment</a></li>
+                        <li><a href="#">Patient History</a></li>
+
+                    </ul>
+                </li>
+               
+                <li><a href="#">Disease-Wise Report</a> </li>
+                <li><a href="#">Disease Demographic Report</a></li>
+                <li><a href="#">All Disease Bar Chart </a></li>
+               
+            </ul>
+        </nav>
+        <div class="container">
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
+            </asp:ContentPlaceHolder>
+
+
+
+        </div>
+        <footer> Design By RGB </footer>
+    </div>
+        
+       
+    </div>
+    </form>
+</body>
+</html>

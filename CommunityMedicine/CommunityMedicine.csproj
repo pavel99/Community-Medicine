@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -60,11 +63,18 @@
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styles.css" />
+    <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="UI\CenterEntryPage.aspx" />
     <Content Include="UI\CenterHomePage.aspx" />
     <Content Include="UI\CenterLoginPage.aspx" />
     <Content Include="UI\CommunityMedicine.Master" />
     <Content Include="UI\CenterMaster.Master" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -80,6 +90,7 @@
     <Content Include="UI\MedicineEntryPage.aspx" />
     <Content Include="UI\MedicineStockReport.aspx" />
     <Content Include="UI\SendMedicinePage.aspx" />
+    <Content Include="UI\TreatmentGiven.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +192,13 @@
     </Compile>
     <Compile Include="UI\SendMedicinePage.aspx.designer.cs">
       <DependentUpon>SendMedicinePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TreatmentGiven.aspx.cs">
+      <DependentUpon>TreatmentGiven.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\TreatmentGiven.aspx.designer.cs">
+      <DependentUpon>TreatmentGiven.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

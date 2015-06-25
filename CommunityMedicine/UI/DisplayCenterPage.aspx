@@ -3,7 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table>
+        <asp:Panel runat="server" ID="panel1">
+            
+      
+        <table id="result">
             <tr>
                 <td>
                     <asp:Label ID="Label1" runat="server" Text="Center Name"></asp:Label>
@@ -33,6 +36,8 @@
                 </td>
             </tr>
         </table>
+              </asp:Panel>
+        <asp:Button ID="doPdfButton" runat="server" Text="PDF" OnClick="doPdfButton_Click" Width="103px" />
     
     </div>
 </asp:Content>

@@ -71,15 +71,17 @@ namespace CommunityMedicine.UI
 
         protected void addButton_Click(object sender, EventArgs e)
         {
+            //dataTable.Clear();
+            if (Session["save"] == null)
+            {
+                //if (ViewState["save"] != null)
 
-            //if (Session["save"] != null)
-            if (ViewState["save"] != null)
-
-
-                //dataTable = (DataTable)Session["save"];
-                dataTable = (DataTable)ViewState["save"];
-
-
+                PopulateGridView();
+               // dataTable = (DataTable) Session["save"];
+            }
+            dataTable = (DataTable)Session["save"];
+            //  dataTable = (DataTable)ViewState["save"];
+            
             // GetDataLoadedInGridView();
             string name = medicineDropDownList.SelectedItem.Text;
             int quantity = int.Parse(quantityTextBox.Text);
@@ -93,10 +95,11 @@ namespace CommunityMedicine.UI
 
             dataTable.Rows.Add(dr);
 
-            //Session["save"] = dataTable;
-            ViewState["save"] = dataTable;
+            Session["save"] = dataTable;
+            //ViewState["save"] = dataTable;
             medicineQuantityGridView.DataSource = dataTable;
             medicineQuantityGridView.DataBind();
+            //ViewState["save"] = null;
 
 
 
@@ -107,8 +110,8 @@ namespace CommunityMedicine.UI
             dataTable.Columns.Add("Name", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(string));
 
-            //    Session["save"] = dataTable;
-            ViewState["save"] = dataTable;
+            Session["save"] = dataTable;
+            //ViewState["save"] = dataTable;
         }
 
         protected void saveButton_Click(object sender, EventArgs e)
@@ -144,6 +147,7 @@ namespace CommunityMedicine.UI
                         if (test > 0)
                         {
                             msgLabel.Text = "Updated Succesfully";
+                            Session.RemoveAll();
                         }
                         else
                         {
@@ -161,12 +165,18 @@ namespace CommunityMedicine.UI
                 if (value > 0)
                 {
                     msgLabel.Text = "Medicine is sent Succesfully";
-
+                 
                 }
 
-                medicineQuantityGridView.DataSource = null;
+                medicineQuantityGridView.DataSource = string.Empty;
+                //ViewState["save"] = string.Empty;
+                //Session["save"] = null;
                 medicineQuantityGridView.DataBind();
+                medicineQuantityGridView.Columns.Clear();
+                dataTable.Clear();
                 quantityTextBox.Text = "";
+                Session.Clear();
+
             }
 
 

@@ -2,8 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+   
+    <script src="../Scripts/jquery-1.4.4.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <div>
+        <br /><br />
         <table>
             <tr>
                 <td>
@@ -12,18 +15,18 @@
                         
 
                <td class="auto-style1">
-                   <asp:TextBox ID="diseaseNameTextBox" runat="server" Width="233px"></asp:TextBox>
+                   <asp:TextBox ID="diseaseNameTextBox" runat="server" ClientIDMode="Static"  Width="264px" Height="42px"></asp:TextBox>
 
                </td>
             </tr>
                <tr>
                 <td>
-                    <asp:Label ID="Label2" runat="server" Text="Description"></asp:Label>
+                    <asp:Label ID="Label2" runat="server"  Text="Description"></asp:Label>
                 </td>
                         
 
                <td class="auto-style1">
-                   <asp:TextBox ID="descriptionTextBox" TextMode="MultiLine" runat="server" Height="73px" Width="232px"></asp:TextBox>
+                   <asp:TextBox ID="descriptionTextBox" TextMode="MultiLine" ClientIDMode="Static" runat="server" Height="73px" Width="265px"></asp:TextBox>
                </td>
             </tr>
                <tr>
@@ -33,7 +36,7 @@
                         
 
                <td class="auto-style1">
-                   <asp:TextBox ID="procedureTextBox" TextMode="MultiLine" runat="server" Height="61px" Width="234px"></asp:TextBox>
+                   <asp:TextBox ID="procedureTextBox" TextMode="MultiLine" ClientIDMode="Static" runat="server" Height="61px" Width="262px"></asp:TextBox>
                </td>
             </tr>
                <tr>
@@ -49,8 +52,57 @@
         </table>
         <br/>
         <asp:Label ID="msgLabel" runat="server"></asp:Label> <br/>
-        <asp:GridView ID="diseaseGridView" runat="server" AllowPaging="True" PageSize="4" OnPageIndexChanging="diseaseGridView_PageIndexChanging" OnSelectedIndexChanging="diseaseGridView_SelectedIndexChanging">
+        <asp:GridView ID="diseaseGridView" runat="server" AllowPaging="True" PageSize="4" OnPageIndexChanging="diseaseGridView_PageIndexChanging" OnSelectedIndexChanging="diseaseGridView_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Width="337px">
+             <AlternatingRowStyle BackColor="#DCDCDC" />
+             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
              <PagerSettings FirstPageText="First" LastPageText="Last" PageButtonCount="4" />
+             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+             <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+             <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+             <SortedAscendingCellStyle BackColor="#F1F1F1" />
+             <SortedAscendingHeaderStyle BackColor="#0000A9" />
+             <SortedDescendingCellStyle BackColor="#CAC9C9" />
+             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
+         <script type ="text/javascript" >                
+             $(document).ready(function () {  
+                 $("#form1").validate({
+                     rules: {
+                         //This section we need to place our custom rule   
+                         //for the control.  
+                         <%=diseaseNameTextBox.UniqueID %>: {
+                             required: true
+                         },
+                         <%=descriptionTextBox.UniqueID %>: {
+                             required: true
+                         },
+                          <%=procedureTextBox.UniqueID %>: {
+                              required: true
+                          },
+                         
+                         messages: {
+                             //This section we need to place our custom   
+                             //validation message for each control.  
+                             <%=diseaseNameTextBox.UniqueID %>: {
+                                 required: "Name is required."
+                             },
+                             <%=descriptionTextBox.UniqueID %>: {
+                                 required: "Description is required."
+                             },
+                             <%=procedureTextBox.UniqueID %>: {
+                                 required: "Treatment procedure is required."
+                             }
+                         },
+                     }
+                 });  
+        });         
+    </script>  
+        <style type ="text/css" >  
+        label.error {             
+            color: red;   
+            display:inline-flex ;                 
+        }  
+</style> 
     </div>
 </asp:Content>

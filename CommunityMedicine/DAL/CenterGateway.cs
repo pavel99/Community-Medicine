@@ -250,8 +250,10 @@ namespace CommunityMedicine.DAL
         {
             List<MedicineStockReport> quantityList=new List<MedicineStockReport>();
             string query =
-                @"select MedicineName as MedicineName,DistributeMedicine.Quantity From DistributeMedicine join Medicine" +
-                " on Medicine.MedicineId=DistributeMedicine.MedicineId where CenterId=centerId";
+                string.Format(@"select Medicine.MedicineName as MedicineName,DistributeMedicine.Quantity From DistributeMedicine join Medicine" +
+                " ON Medicine.MedicineId=DistributeMedicine.MedicineId inner join Center ON " +
+                "DistributeMedicine.CenterId =Center.CenterId where DistributeMedicine.CenterId='{0}' " +
+                "Group By MedicineName,DistributeMedicine.Quantity ",centerId);
             SqlConnection connection=new SqlConnection(connectionString);
             SqlCommand command=new SqlCommand(query,connection);
             connection.Open();

@@ -97,10 +97,10 @@ nav ul li a:hover {
 
 #primary_nav_wrap ul li:hover
 {
-    background;
+    background: white;
 }
 
-##primary_nav_wrap ul ul
+#primary_nav_wrap ul ul
 {
 	display:none;
 	position:absolute;
@@ -141,7 +141,7 @@ nav ul li a:hover {
 
 .container {
     width: 1224px;
-    height:400px;
+    /*height:400px;*/
     float:left;
  
 }

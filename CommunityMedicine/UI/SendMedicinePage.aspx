@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="../Scripts/jquery-1.4.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <div>
         <h1>Send Medicine to a Center</h1>
         <table>
@@ -42,6 +44,33 @@
         </table>
 
         <asp:Label ID="msgLabel" runat="server"></asp:Label>
+         <%--<script type ="text/javascript" >                
+             $(document).ready(function () {  
+                 $("#form1").validate({  
+                     rules: {  
+                         //This section we need to place our custom rule   
+                         //for the control.  
+                         <%=quantityTextBox.UniqueID %>:{  
+                             required:true  
+                         },   
+                     },  
+                     messages: {  
+                         //This section we need to place our custom   
+                         //validation message for each control.  
+                         <%=quantityTextBox.UniqueID %>:{  
+                        required: "Quantity is required."  
+                    },  
+                },  
+                 });  
+             });         
+    </script>  --%>
+        
+        <%--<style type ="text/css" >  
+        label.error {             
+            color: red;   
+            display:inline-flex ;                 
+        }  --%>
+</style>
     
     </div>
 </asp:Content>

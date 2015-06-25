@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="../Scripts/jquery-1.4.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
      <div>
     <h1>Center Login</h1>
         <table>
@@ -20,7 +22,7 @@
 
                 </td>
                 <td>
-                    <asp:TextBox ID="passwordTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="passwordTextBox" TextMode="Password" runat="server"></asp:TextBox>
 
                 </td>
 
@@ -32,5 +34,36 @@
             </tr>
         </table>
         <asp:Label ID="msgLabel" runat="server" ></asp:Label>
+         
+          <script type ="text/javascript" >                
+              $(document).ready(function () {  
+                  $("#form1").validate({
+                      rules: {
+                          //This section we need to place our custom rule   
+                          //for the control.  
+                          <%=centerCodeTextBox.UniqueID %>: {
+                             required: true
+                         },
+                         <%=passwordTextBox.UniqueID %>: {
+                             required: true
+                         },
+                         
+                         
+                         messages: {
+                             //This section we need to place our custom   
+                             //validation message for each control.  
+                             <%=centerCodeTextBox.UniqueID %>: {
+                                 required: "Name is required."
+                             },
+                             <%=passwordTextBox.UniqueID %>: {
+                                 required: "Description is required."
+                             },
+                             
+                         },
+                     }
+                 });  
+              }); 
+              
+    </script>  
     </div>
 </asp:Content>

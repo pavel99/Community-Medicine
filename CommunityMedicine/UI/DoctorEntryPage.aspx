@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="../Scripts/jquery-1.4.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <div>
         <h1>Doctor Entry</h1>
         <table>
@@ -38,6 +40,40 @@
 
         </table>
         <asp:Label ID="msgLabel" runat="server"></asp:Label>
+        
+        
+        <script type ="text/javascript" >                
+            $(document).ready(function () {  
+                $("#form1").validate({  
+                    rules: {  
+                        //This section we need to place our custom rule   
+                        //for the control.  
+                        <%=doctorNameTextBox.UniqueID %>:{  
+                             required:true  
+                        },   
+                         <%=doctorDegreeTextBox.UniqueID %>:{  
+                             required:true  
+                         }, 
+                         <%=specializationTextBox.UniqueID %>:{  
+                             required:true  
+                         }, 
+                     },  
+                     messages: {  
+                         //This section we need to place our custom   
+                         //validation message for each control.  
+                         <%=doctorNameTextBox %>:{  
+                        required: "Name is required."  
+                         },  
+                         <%=doctorDegreeTextBox.UniqueID %>:{  
+                             required: "Degree is required."  
+                         },  
+                         <%=specializationTextBox.UniqueID %>:{  
+                             required: "Specialization is required."  
+                         },  
+                },  
+                 });  
+             });         
+    </script> 
         
     </div>
 </asp:Content>

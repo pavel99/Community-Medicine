@@ -24,3 +24,5 @@ E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\
 E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\obj\Debug\CommunityMedicine.pdb
 E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\itextsharp.dll
 E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\itextsharp.xml
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\Newtonsoft.Json.dll
+E:\SEIP Training\HomePractice\Final Project\CommunityMedicine\CommunityMedicine\bin\Newtonsoft.Json.xml

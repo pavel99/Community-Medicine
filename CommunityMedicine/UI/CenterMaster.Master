@@ -30,7 +30,7 @@
                     <ul>
                         <li><a href="DoctorEntryPage.aspx">Doctor Entry</a></li>
                         <li><a href="MedicineStockReport.aspx">Medicine Stock Report</a></li>
-                        <li><a href="#">Treatment</a></li>
+                        <li><a href="TreatmentGiven.aspx">Treatment Given</a></li>
                         <li><a href="#">Patient History</a></li>
 
                     </ul>

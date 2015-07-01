@@ -13,5 +13,11 @@ namespace CommunityMedicine.UI
         {
 
         }
+
+        protected void diseaseWiseGridView_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+
+        }
     }
 }

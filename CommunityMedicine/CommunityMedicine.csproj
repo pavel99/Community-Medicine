@@ -143,6 +143,7 @@
     <Compile Include="DAL\TreatmentGateway.cs" />
     <Compile Include="Model\Dose.cs" />
     <Compile Include="Model\MedicineStockReport.cs" />
+    <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Treatment.cs" />
     <Compile Include="Model\VoterModel.cs" />
     <Compile Include="UI\CenterEntryPage.aspx.cs">

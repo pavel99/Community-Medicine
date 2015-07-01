@@ -10,7 +10,7 @@ namespace CommunityMedicine.Model
         public int  Id{ get; set; }
         public string VoterId { get; set; }
         public string Observation { set; get; }
-        public DateTime Date{ get; set; }
+        public string Date{ get; set; }
         public int  DoctorId { get; set; }
         public int DiseaseId { get; set; }
         public int MedicineId { set; get; }
@@ -21,6 +21,7 @@ namespace CommunityMedicine.Model
         public string Note { get; set; }
         public int CenterId { get; set; }
 
+        public int ServiceNumber { get; set; }
         
 
         

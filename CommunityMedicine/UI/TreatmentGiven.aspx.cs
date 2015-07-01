@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CommunityMedicine.BLL;
 using CommunityMedicine.DAL;
 using CommunityMedicine.Model;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
@@ -19,6 +24,7 @@ namespace CommunityMedicine.UI
     {
         TreatmentManager manager = new TreatmentManager();
         DataTable dataTable=new DataTable();
+        Treatment treatment=new Treatment();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -56,7 +62,17 @@ namespace CommunityMedicine.UI
                 }
 
             }
+            string voter = voterIdTextBox.Text;
+            if (manager.IsPatientAlreadyExists(voter))
+            {
 
+                int serviceGiven = manager.GetServiceGivenByVoterId(voter);
+                serviceGivenTextBox.Text = Convert.ToString(serviceGiven);
+            }
+            else
+            {
+                serviceGivenTextBox.Text = "0";
+            }
         }
 
         public void PopulateDoctorDropdownList()
@@ -163,6 +179,93 @@ namespace CommunityMedicine.UI
 
             Session["save"] = dataTable;
             //ViewState["save"] = dataTable;
+        }
+
+        protected void saveButton_Click(object sender, EventArgs e)
+        {
+            string disease = "";
+            string medicine = "";
+
+            if (voterIdTextBox.Text=="")
+            {
+                
+            }
+            else
+            {
+                 foreach (GridViewRow row in treatmentGridView.Rows)
+                {
+                    TextBox txtBox = (TextBox)row.FindControl("TextBox");
+
+                    treatment.VoterId = voterIdTextBox.Text;
+                    treatment.Observation = observationTextBox.Text;
+                    
+                    treatment.Date =dateTextBox.Text ;
+                    treatment.DoctorId = Convert.ToInt32(doctorDropDownList.SelectedValue);
+                    treatment.CenterId = Convert.ToInt32(Session["centerId"]);
+                    disease = row.Cells[0].Text;
+                    medicine = (row.Cells[1].Text);
+                    treatment.Dose = (row.Cells[2].Text);
+                    treatment.Meal=(row.Cells[3].Text);
+                    treatment.Quantity=int.Parse(row.Cells[4].Text);
+                    treatment.Note=(row.Cells[5].Text);
+
+                     
+
+                    treatment.DiseaseId = manager.GetDiseaseIdByName(disease);
+                    treatment.MedicineId = manager.GetMedicineIdByName(medicine);
+                    saveLabel.Text = manager.SaveTreatMent(treatment);
+                   
+                    string text = manager.UpdateQuantity(treatment.CenterId, treatment.MedicineId, treatment.Quantity);
+                }
+                 if (manager.IsPatientAlreadyExists(treatment.VoterId))
+                 {
+                     updateLabel.Text = manager.UpdateServiceGiven(treatment.VoterId);
+                 }
+                 else
+                 {
+                     Services services = new Services();
+                     services.VoterId = voterIdTextBox.Text;
+                     services.ServiceGiven = 1;
+                     string result = manager.SaveService(services);
+                 }
+
+                }
+           
+            Session.Clear();
+            Session.RemoveAll();
+            treatmentGridView.DataSource = "";
+            treatmentGridView.DataBind();
+            Dopdf();
+
+        }
+
+        public void Dopdf()
+        {
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Export.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            HtmlForm frm = new HtmlForm();
+            treatmentPanel.Parent.Controls.Add(frm);
+            //voterIdTextBox.Parent.Controls.Add(frm);
+            //serviceGivenTextBox.Parent.Controls.Add(frm);
+            //observationTextBox.Parent.Controls.Add(frm);
+            //dateTextBox.Parent.Controls.Add(frm);
+            //doctorDropDownList.Parent.Controls.Add(frm);
+
+            frm.Attributes["runat"] = "server";
+            frm.Controls.Add(treatmentPanel);
+            frm.RenderControl(hw);
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlparser.Parse(sr);
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
+            Response.End(); 
         }
 
     }

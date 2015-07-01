@@ -12,7 +12,7 @@ namespace CommunityMedicine.DAL
 {
     public class TreatmentGateway
     {
-        Doctor aDoctor=new Doctor();
+        Doctor aDoctor = new Doctor();
         private string connectionString = ConfigurationManager.ConnectionStrings["CommunityMedicineConDB"].ConnectionString;
 
         public List<Doctor> PopulateDoctorDropDownList(int centerId)
@@ -20,7 +20,7 @@ namespace CommunityMedicine.DAL
 
             List<Doctor> doctorList = new List<Doctor>();
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = string.Format("SELECT * FROM Doctor Where CenterId='{0}'",centerId);
+            string query = string.Format("SELECT * FROM Doctor Where CenterId='{0}'", centerId);
 
             connection.Open();
             SqlCommand command = new SqlCommand(query, connection);
@@ -41,14 +41,14 @@ namespace CommunityMedicine.DAL
         }
 
         public List<Dose> PopulateDosedropdownList()
-        { 
-            List<Dose> doseList=new List<Dose>();
-            Dose dose1=new Dose();
+        {
+            List<Dose> doseList = new List<Dose>();
+            Dose dose1 = new Dose();
             dose1.Id = 1;
             dose1.DoseType = "1+0+0";
             doseList.Add(dose1);
 
-            
+
             Dose dose2 = new Dose();
             dose2.Id = 2;
             dose2.DoseType = "0+1+0";
@@ -117,7 +117,7 @@ namespace CommunityMedicine.DAL
 
             List<Medicine> medicineList = new List<Medicine>();
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = string.Format("SELECT Medicine.MedicineId,Medicine.MedicineName FROM DistributeMedicine INNER JOIN Medicine ON Medicine.MedicineId=DistributeMedicine.MedicineId Where CenterId='{0}'",centerId);
+            string query = string.Format("SELECT Medicine.MedicineId,Medicine.MedicineName FROM DistributeMedicine INNER JOIN Medicine ON Medicine.MedicineId=DistributeMedicine.MedicineId Where CenterId='{0}'", centerId);
 
             connection.Open();
             SqlCommand command = new SqlCommand(query, connection);
@@ -127,7 +127,7 @@ namespace CommunityMedicine.DAL
             while (reader.Read())
             {
                 Medicine medicine = new Medicine();
-                medicine.Serial= Convert.ToInt32(reader["MedicineId"]);
+                medicine.Serial = Convert.ToInt32(reader["MedicineId"]);
                 medicine.MedicineName = reader["MedicineName"].ToString();
                 medicineList.Add(medicine);
 
@@ -138,7 +138,7 @@ namespace CommunityMedicine.DAL
         }
         public int SaveTreatMent(Treatment aTreatment)
         {
-            string query = string.Format("INSERT INTO Diesease VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", aTreatment.VoterId, aTreatment.Observation, aTreatment.Date,aTreatment.DoctorId,aTreatment.DiseaseId,aTreatment.MedicineId,aTreatment.Dose,aTreatment.Meal,aTreatment.Quantity,aTreatment.Note,aTreatment.CenterId);
+            string query = string.Format("INSERT INTO Treatment VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", aTreatment.VoterId, aTreatment.Observation, aTreatment.Date, aTreatment.DoctorId, aTreatment.DiseaseId, aTreatment.MedicineId, aTreatment.Dose, aTreatment.Meal, aTreatment.Quantity, aTreatment.Note, aTreatment.CenterId,aTreatment.ServiceNumber);
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
@@ -147,9 +147,9 @@ namespace CommunityMedicine.DAL
             return rowAffected;
 
         }
-       public int SaveService(Services aService)
+        public int SaveService(Services aService)
         {
-            string query = string.Format("INSERT INTO Service VALUES('{0}','{1}')", aService.VoterId,aService.ServiceGiven);
+            string query = string.Format("INSERT INTO Service VALUES('{0}','{1}')", aService.VoterId, aService.ServiceGiven);
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
@@ -158,23 +158,89 @@ namespace CommunityMedicine.DAL
             return rowAffected;
 
         }
-       public bool IsPatientAlreadyExists(Services aService)
-       {
-           bool isPatientExists = false;
+        public bool IsPatientAlreadyExists(string voterId)
+        {
+            bool isPatientExists = false;
 
-           SqlConnection connection = new SqlConnection(connectionString);
-           string query = string.Format("Select * From Service where VoterId='{0}'",aService.VoterId);
-           SqlCommand command = new SqlCommand(query, connection);
-           connection.Open();
-           SqlDataReader reader = command.ExecuteReader();
-           while (reader.Read())
-           {
-               isPatientExists = true;
-               break;
-           }
-           reader.Close();
-           connection.Close();
-           return isPatientExists;
-       }
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = string.Format("Select * From Service where VoterId='{0}'", voterId);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                isPatientExists = true;
+                break;
+            }
+            reader.Close();
+            connection.Close();
+            return isPatientExists;
+        }
+        public int UpdateQuantity(int centerId, int medicineId, int value)
+        {
+            string query = string.Format(@"UPDATE DistributeMedicine SET Quantity=Quantity-'{0}'where CenterId='{1}'" +
+                                       " AND MedicineId='{2}'", value, centerId, medicineId);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+        }
+
+        public int GetQuantiyOfMedicine(int centerId, int medicineId)
+        {
+            string query = string.Format("Select Quantity From DistributeMedicine Where CenterId='{0}' AND MedicineId='{1}'",centerId, medicineId);
+               
+            SqlConnection connection=new SqlConnection(connectionString);
+            SqlCommand command=new SqlCommand(query,connection);
+            connection.Open();
+            int quantity = (int) command.ExecuteScalar();
+            connection.Close();
+            return quantity;
+        }
+        public int UpdateServiceGiven(string voterId)
+        {
+            string query = string.Format(@"UPDATE Service SET ServiceGiven=ServiceGiven+1 where VoterId='{0}'",voterId);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+        }
+        public int GetDiseaseIdByName(string diseaseName)
+        {
+            string query = string.Format("SELECT DiseaseId FROM Diesease Where DiseaseName='{0}'", diseaseName);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            Disease disease=new Disease();
+             disease.Serial= Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+            return disease.Serial;
+        }
+        public int GetMedicineIdByName(string medicineName)
+        {
+            string query = string.Format("SELECT MedicineId FROM Medicine Where MedicineName='{0}'", medicineName);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+           Medicine medicine=new Medicine();
+            medicine.Serial = Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+            return medicine.Serial;
+        }
+        public int GetServiceGivenByVoterId(string voterId)
+        {
+            string query = string.Format("SELECT ServiceGiven FROM Service Where VoterId='{0}'", voterId);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            Services services = new Services();
+            services.ServiceGiven = Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+            return services.ServiceGiven;
+        }
     }
 }

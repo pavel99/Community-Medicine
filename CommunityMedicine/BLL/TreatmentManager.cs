@@ -45,9 +45,9 @@ namespace CommunityMedicine.BLL
             return gateway.PopulateDosedropdownList();
         }
 
-        public bool IsPatientAlreadyExists(Services aService)
+        public bool IsPatientAlreadyExists(string voterId)
         {
-            return gateway.IsPatientAlreadyExists(aService);
+            return gateway.IsPatientAlreadyExists(voterId);
         }
 
         public string UpdateQuantity(int centerId, int medicineId,int value)
@@ -56,11 +56,11 @@ namespace CommunityMedicine.BLL
             {
                 if (gateway.UpdateQuantity(centerId, medicineId, value) > 0)
                 {
-                    return "Updated Succesfully"
+                    return "Updated Succesfully";
                 }
                 else
                 {
-                    return "Upadating failed"
+                    return "Upadating failed";
                 }
             }
             else
@@ -69,5 +69,46 @@ namespace CommunityMedicine.BLL
                        gateway.GetQuantiyOfMedicine(centerId, medicineId);
             }
         }
+
+        public string UpdateServiceGiven(string voterId)
+        {
+            if (gateway.UpdateServiceGiven(voterId) > 0)
+            {
+                return "Updated Succesfully";
+            }
+            else
+            {
+
+                return "Updating failed";
+            }
+        }
+
+        public string SaveService(Services aService)
+        {
+            if (gateway.SaveService(aService)>0)
+            {
+                return "Saved Succesfully";
+            }
+            else
+            {
+                return "Saving Failed";
+            }
+        }
+
+        public int GetDiseaseIdByName(string diseaseName)
+        {
+            return gateway.GetDiseaseIdByName(diseaseName);
+        }
+
+        public int GetMedicineIdByName(string medicineName)
+        {
+            return gateway.GetMedicineIdByName(medicineName);
+        }
+
+        public int GetServiceGivenByVoterId(string voterId)
+        {
+            return gateway.GetServiceGivenByVoterId(voterId);
+        }
+
     }
 }

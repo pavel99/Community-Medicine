@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UI/CenterMaster.Master" AutoEventWireup="true" CodeBehind="TreatmentGiven.aspx.cs" Inherits="CommunityMedicine.UI.TreatmentGiven" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/UI/CenterMaster.Master" AutoEventWireup="true" CodeBehind="TreatmentGiven.aspx.cs" Inherits="CommunityMedicine.UI.TreatmentGiven" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -22,6 +22,7 @@
 
 
     <div>
+        <asp:Panel  ID="treatmentPanel" runat="server">
         <table>
             <tr>
                 <td>
@@ -155,9 +156,11 @@
 
         <br />
         <br />
-        <asp:GridView ID="treatmentGridView" runat="server"></asp:GridView>
-        <asp:Button ID="saveButton" runat="server" Text="Save" />
+        <asp:GridView ID="treatmentGridView" runat="server"></asp:GridView><br />
 
+        <asp:Button ID="saveButton" runat="server" Text="Save" Width="117px" OnClick="saveButton_Click" />
+        <asp:Label ID="saveLabel" runat="server" ></asp:Label><br/>
+        <asp:Label ID="updateLabel" runat="server" ></asp:Label>
 
 
 
@@ -166,6 +169,7 @@
             $("#<%= dateTextBox.ClientID %>").datepicker();
            
         </script>
+            </asp:Panel>
 
 
     </div>

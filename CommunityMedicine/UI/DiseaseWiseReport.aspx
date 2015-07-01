@@ -17,7 +17,9 @@
     <asp:Label ID="Label3" runat="server" Text="And"></asp:Label>
     <%-- <asp:DropDownList ID="datelastDropDownList" runat="server"></asp:DropDownList>--%>
     <asp:TextBox ID="lastDateTextBox" Text="Click to select Date" runat="server"></asp:TextBox>
-    <asp:GridView ID="diseaseWiseGridView" runat="server"></asp:GridView>
+    <asp:GridView ID="diseaseWiseGridView" runat="server" AllowPaging="True" OnSelectedIndexChanging="diseaseWiseGridView_SelectedIndexChanging" PageSize="5">
+        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" PageButtonCount="5" />
+        </asp:GridView>
     <asp:Button ID="doPDF" runat="server" Text="PDF" />
 
 

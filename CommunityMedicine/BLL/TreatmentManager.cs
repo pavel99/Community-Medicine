@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using CommunityMedicine.DAL;
@@ -110,5 +111,14 @@ namespace CommunityMedicine.BLL
             return gateway.GetServiceGivenByVoterId(voterId);
         }
 
+        public List<DiseaseWiseReports> GetDiseaseWiseReport(int diseaseId, string date1, string date2)
+        {
+            return gateway.GetDiseaseWiseReport(diseaseId, date1, date2);
+        }
+
+        public DataTable GetData(string districtName, string fromDate, string toDate)
+        {
+            return gateway.GetData(districtName, fromDate, toDate);
+        }
     }
 }

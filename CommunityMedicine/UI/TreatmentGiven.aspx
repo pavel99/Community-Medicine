@@ -146,6 +146,7 @@
                 <td>
                     <asp:RadioButton ID="aftermelaRadioButton" Text="After Meal" runat="server" GroupName="mealGroup" />
                 </td>
+              
             </tr>
         </table>
 
@@ -157,8 +158,10 @@
         <br />
         <br />
         <asp:GridView ID="treatmentGridView" runat="server"></asp:GridView><br />
-
+        </asp:Panel>
         <asp:Button ID="saveButton" runat="server" Text="Save" Width="117px" OnClick="saveButton_Click" />
+         <asp:Button ID="pdfButton" runat="server" Text="PDF" Width="117px" OnClick="pdfButton_Click" />
+
         <asp:Label ID="saveLabel" runat="server" ></asp:Label><br/>
         <asp:Label ID="updateLabel" runat="server" ></asp:Label>
 
@@ -169,7 +172,7 @@
             $("#<%= dateTextBox.ClientID %>").datepicker();
            
         </script>
-            </asp:Panel>
+            
 
 
     </div>

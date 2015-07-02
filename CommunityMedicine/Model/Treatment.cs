@@ -21,7 +21,7 @@ namespace CommunityMedicine.Model
         public string Note { get; set; }
         public int CenterId { get; set; }
 
-        public int ServiceNumber { get; set; }
+        
         
 
         

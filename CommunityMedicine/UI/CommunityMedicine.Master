@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-   <%-- <link href="../Content/reset.css" rel="stylesheet" />--%>
-    <%--<link href="../Content/style.css" rel="stylesheet" />--%>
-    <link href="../Content/styles.css" rel="stylesheet" />
+ 
+   
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+     <link href="../Content/styles.css" rel="stylesheet" />
     <form id="form1" runat="server">
     <div class="wrapper">
         <div class="header">

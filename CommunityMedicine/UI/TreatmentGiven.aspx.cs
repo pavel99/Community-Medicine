@@ -214,6 +214,7 @@ namespace CommunityMedicine.UI
                     treatment.DiseaseId = manager.GetDiseaseIdByName(disease);
                     treatment.MedicineId = manager.GetMedicineIdByName(medicine);
                     saveLabel.Text = manager.SaveTreatMent(treatment);
+                   // Dopdf();
                    
                     string text = manager.UpdateQuantity(treatment.CenterId, treatment.MedicineId, treatment.Quantity);
                 }
@@ -230,42 +231,117 @@ namespace CommunityMedicine.UI
                  }
 
                 }
+           // Dopdf();
+            
            
             Session.Clear();
             Session.RemoveAll();
-            treatmentGridView.DataSource = "";
+            treatmentGridView.DataSource =string.Empty;
+            treatmentGridView.Columns.Clear();
             treatmentGridView.DataBind();
-            Dopdf();
+            observationTextBox.Text = "";
+            noteTextBox.Text = "";
+            // Dopdf();
 
         }
 
-        public void Dopdf()
-        {
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=Export.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            HtmlForm frm = new HtmlForm();
-            treatmentPanel.Parent.Controls.Add(frm);
-            //voterIdTextBox.Parent.Controls.Add(frm);
-            //serviceGivenTextBox.Parent.Controls.Add(frm);
-            //observationTextBox.Parent.Controls.Add(frm);
-            //dateTextBox.Parent.Controls.Add(frm);
-            //doctorDropDownList.Parent.Controls.Add(frm);
+        //public void Dopdf()
+        //{
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("content-disposition", "attachment;filename=Export.pdf");
+        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //    StringWriter sw = new StringWriter();
+        //    HtmlTextWriter hw = new HtmlTextWriter(sw);
+        //    HtmlForm frm = new HtmlForm();
+        //    treatmentPanel.Parent.Controls.Add(frm);
+        //    //voterIdTextBox.Parent.Controls.Add(frm);
+        //    //serviceGivenTextBox.Parent.Controls.Add(frm);
+        //    //observationTextBox.Parent.Controls.Add(frm);
+        //    //dateTextBox.Parent.Controls.Add(frm);
+        //    //doctorDropDownList.Parent.Controls.Add(frm);
 
-            frm.Attributes["runat"] = "server";
-            frm.Controls.Add(treatmentPanel);
-            frm.RenderControl(hw);
-            StringReader sr = new StringReader(sw.ToString());
-            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            pdfDoc.Open();
-            htmlparser.Parse(sr);
-            pdfDoc.Close();
-            Response.Write(pdfDoc);
-            Response.End(); 
+        //    frm.Attributes["runat"] = "server";
+        //    frm.Controls.Add(treatmentPanel);
+        //    frm.RenderControl(hw);
+        //    StringReader sr = new StringReader(sw.ToString());
+        //    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+        //    HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+        //    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        //    pdfDoc.Open();
+        //    htmlparser.Parse(sr);
+        //    pdfDoc.Close();
+        //    Response.Write(pdfDoc);
+        //    Response.End(); 
+        //}
+
+        protected void pdfButton_Click(object sender, EventArgs e)
+        {
+            DoPdf();
+
+        }
+
+        public void DoPdf()
+        {
+            PdfPTable pdfPTable = new PdfPTable(treatmentGridView.HeaderRow.Cells.Count);
+
+            foreach (TableCell headerCell in treatmentGridView.HeaderRow.Cells)
+            {
+                PdfPCell pdfCell = new PdfPCell(new Phrase(headerCell.Text));
+                pdfPTable.AddCell(pdfCell);
+            }
+
+            int count = 1;
+
+            foreach (GridViewRow gridViewRow in treatmentGridView.Rows)
+            {
+                if (count != 0)
+                    foreach (TableCell tableCell in gridViewRow.Cells)
+                    {
+                        PdfPCell pdfCell = new PdfPCell(new Phrase(tableCell.Text));
+                        pdfPTable.AddCell(pdfCell);
+                    }
+                count++;
+
+            }
+            Document document = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter.GetInstance(document, Response.OutputStream);
+            //PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("test.pdf", FileMode.Create));
+
+            Paragraph nationalID = new Paragraph("Voter Id: " + voterIdTextBox.Text);
+            Paragraph name = new Paragraph("Patient Name: " + nameTextBox.Text);
+           // Paragraph centerName = new Paragraph("Center Name: " + n.Name);
+            Paragraph address = new Paragraph("Address: " + addressTextBox.Text);
+            Paragraph age = new Paragraph("Date of Birth: " + ageTextBox.Text);
+            Paragraph date = new Paragraph("Treatment Date: " + dateTextBox.Text);
+            Paragraph doctor = new Paragraph("Doctor Name: " + doctorDropDownList.SelectedItem.Text);
+            Paragraph service = new Paragraph("Service Given: " + serviceGivenTextBox.Text);
+            Paragraph observation = new Paragraph("Observation: " + observationTextBox.Text);
+            Paragraph text = new Paragraph("\n\n");
+
+            document.Open();
+            document.Add(nationalID);
+            document.Add(name);
+            document.Add(address);
+            //document.Add(centerName);
+            document.Add(date);
+            document.Add(doctor);
+            document.Add(observation);
+
+
+            document.Add(age);
+            document.Add(service);
+
+
+            document.Add(text);
+            document.Add(pdfPTable);
+            document.Close();
+
+            Response.ContentType = "Application";
+            Response.AppendHeader("content-disposition", "attachment;filename=Prescription.pdf");
+            Response.Write(document);
+            Response.Flush();
+            Response.End();
+            document.Close();
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -138,7 +139,7 @@ namespace CommunityMedicine.DAL
         }
         public int SaveTreatMent(Treatment aTreatment)
         {
-            string query = string.Format("INSERT INTO Treatment VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", aTreatment.VoterId, aTreatment.Observation, aTreatment.Date, aTreatment.DoctorId, aTreatment.DiseaseId, aTreatment.MedicineId, aTreatment.Dose, aTreatment.Meal, aTreatment.Quantity, aTreatment.Note, aTreatment.CenterId,aTreatment.ServiceNumber);
+            string query = string.Format("INSERT INTO Treatment VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", aTreatment.VoterId, aTreatment.Observation, aTreatment.Date, aTreatment.DoctorId, aTreatment.DiseaseId, aTreatment.MedicineId, aTreatment.Dose, aTreatment.Meal, aTreatment.Quantity, aTreatment.Note, aTreatment.CenterId);
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
@@ -190,18 +191,18 @@ namespace CommunityMedicine.DAL
 
         public int GetQuantiyOfMedicine(int centerId, int medicineId)
         {
-            string query = string.Format("Select Quantity From DistributeMedicine Where CenterId='{0}' AND MedicineId='{1}'",centerId, medicineId);
-               
-            SqlConnection connection=new SqlConnection(connectionString);
-            SqlCommand command=new SqlCommand(query,connection);
+            string query = string.Format("Select Quantity From DistributeMedicine Where CenterId='{0}' AND MedicineId='{1}'", centerId, medicineId);
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
-            int quantity = (int) command.ExecuteScalar();
+            int quantity = (int)command.ExecuteScalar();
             connection.Close();
             return quantity;
         }
         public int UpdateServiceGiven(string voterId)
         {
-            string query = string.Format(@"UPDATE Service SET ServiceGiven=ServiceGiven+1 where VoterId='{0}'",voterId);
+            string query = string.Format(@"UPDATE Service SET ServiceGiven=ServiceGiven+1 where VoterId='{0}'", voterId);
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
@@ -215,8 +216,8 @@ namespace CommunityMedicine.DAL
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
-            Disease disease=new Disease();
-             disease.Serial= Convert.ToInt32(command.ExecuteScalar());
+            Disease disease = new Disease();
+            disease.Serial = Convert.ToInt32(command.ExecuteScalar());
             connection.Close();
             return disease.Serial;
         }
@@ -226,7 +227,7 @@ namespace CommunityMedicine.DAL
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
-           Medicine medicine=new Medicine();
+            Medicine medicine = new Medicine();
             medicine.Serial = Convert.ToInt32(command.ExecuteScalar());
             connection.Close();
             return medicine.Serial;
@@ -242,5 +243,70 @@ namespace CommunityMedicine.DAL
             connection.Close();
             return services.ServiceGiven;
         }
+
+        //public List<Treatment> GetTreatments(string medicineId, string date)
+        //{
+        //    string query=string.Format("Select ")
+        //}
+        public List<DiseaseWiseReports> GetDiseaseWiseReport(int diseaseId, string date1, string date2)
+        {
+            DataTable dt = new DataTable();
+            List<DiseaseWiseReports> reports = new List<DiseaseWiseReports>();
+            string query = string.Format(@"select District.DistrictName , Count(" +
+                                         "distinct(Treatment.VoterId)) as NumberOfPatient,District.Population From Treatment " +
+                                         "inner join Center on Treatment.CenterId=Center.CenterId inner join " +
+                                         "Thana on Center.ThanaId=Thana.ThanaId inner join District on " +
+                                         "Thana.DistrictId=District.DistrictId inner join Diesease on" +
+                                         " Treatment.DiseaseId=Diesease.DiseaseId  where Diesease.DiseaseId='{0}'" +
+                                         " and Treatment.Date Between '{1}' and '{2}'" +
+                                         " GROUP BY District.DistrictName,Diesease.DiseaseName,District.Population",
+                diseaseId, date1, date2);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                DiseaseWiseReports report = new DiseaseWiseReports();
+                report.DistrictName = reader[0].ToString();
+                report.TotalPatient = Convert.ToInt32(reader[1]);
+                int poplulation = Convert.ToInt32(reader[2]);
+                report.PercentageOverPopulation = ((report.TotalPatient * 100.0) / poplulation);
+                reports.Add(report);
+
+            }
+            connection.Close();
+            return reports;
+
+        }
+
+        public DataTable GetData(string districtName, string fromDate, string toDate)
+        {
+            DataTable dt = new DataTable();
+            string query =
+                string.Format(
+                    "Select Diesease.DiseaseName,Count(distinct(Treatment.VoterId)) " +
+                    "From Treatment inner join Diesease on Diesease.DiseaseId=Treatment.DiseaseId " +
+                    "inner join Center on Treatment.CenterId=Center.CenterId inner join Thana on " +
+                    "Thana.ThanaId=Center.ThanaId inner join District on Thana.DistrictId=District.DistrictId " +
+                    "Where District.DistrictName='{0}' AND Treatment.Date between '{1}' AND '{2}' " +
+                    "Group By Diesease.DiseaseName",
+                    districtName, fromDate, toDate);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query);
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                sda.SelectCommand = command;
+                sda.Fill(dt);
+            }
+            return dt;
+        }
+
+
+
+
+
     }
 }

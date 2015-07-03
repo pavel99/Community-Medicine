@@ -48,9 +48,10 @@ namespace CommunityMedicine.UI
                 byte[] hashKey = aManager.GetHashKey(key);
                 aCenter.CenterPassword = aManager.Encrypt(hashKey, password);
                 aCenter.ThanaId = Convert.ToInt32(thanaDropDownList.SelectedValue);
-                int test = aManager.Save(aCenter);
-                if (test > 0)
+                string test = aManager.Save(aCenter);
+                if (test == "Saved Succesfully")
                 {
+
                     string decrptedPassword = aManager.Decrypt(hashKey, aCenter.CenterPassword);
                     Session["centerName"] = aCenter.CenterName;
                     Session["centerCode"] = aCenter.CenterCode;
@@ -58,8 +59,13 @@ namespace CommunityMedicine.UI
                     //Response.Redirect("DisplayCenter.aspx?centerName=" + aCenter.CenterName + "&centerCode=" +
                     //                  aCenter.CenterCode + "&password=" + aCenter.CenterPassword);
                     Response.Redirect("DisplayCenterPage.aspx");
-
                 }
+                else
+                {
+                    msgLabel.Text = test;
+                }
+
+            
             }
         }
 

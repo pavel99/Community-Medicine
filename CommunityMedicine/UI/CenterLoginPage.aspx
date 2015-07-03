@@ -13,7 +13,7 @@
                     <asp:Label ID="codeLabel" runat="server" Text="Center Code"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="centerCodeTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="centerCodeTextBox" runat="server" Width="190px"></asp:TextBox>
                 </td>
 
             </tr>
@@ -23,14 +23,14 @@
 
                 </td>
                 <td>
-                    <asp:TextBox ID="passwordTextBox" TextMode="Password" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="passwordTextBox" TextMode="Password" runat="server" Width="189px"></asp:TextBox>
 
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="loginButton" runat="server" Text="Login" OnClick="loginButton_Click" />
+                    <asp:Button ID="loginButton" runat="server" Text="Login" OnClick="loginButton_Click" Width="118px" />
                 </td>
             </tr>
         </table>

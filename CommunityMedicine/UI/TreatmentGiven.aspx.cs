@@ -53,12 +53,18 @@ namespace CommunityMedicine.UI
                 voterModel.Address = person["address"].ToString();
                 voterModel.DateOfBirth = person["date_of_birth"].ToString();
 
+                int currentyear = DateTime.Now.Year;
                 if (voterId == voterModel.ID)
                 {
                     voterIdTextBox.Text = voterModel.ID;
                     nameTextBox.Text = voterModel.Name;
                     addressTextBox.Text = voterModel.Address;
-                    ageTextBox.Text = voterModel.DateOfBirth;
+
+                    string[] birthyear = voterModel.DateOfBirth.Split('-');
+
+                    int birthyear1 = int.Parse(birthyear[0]);
+
+                    ageTextBox.Text = (currentyear-birthyear1).ToString();
                 }
 
             }

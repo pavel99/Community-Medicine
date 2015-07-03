@@ -4,59 +4,79 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Community Medicine</title>
    
-    
+    <link href="../Contents/css/style.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <link href="../Content/style.css" rel="stylesheet" />
+
     <form id="form1" runat="server">
-    <div>
-        
-            <div class="wrapper">
-        
-            <div class="header">
-                <h1>Community Medicine Automation</h1>
-            </div>
-            
-        
-        <nav id="primary_nav_wrap">
-            <ul>
-
-                <li class="current-menu-item"><a href="#">Home</a></li>
-                <li>
-                    <a href="#">Tasks</a>
-                    <ul>
-                        <li><a href="DoctorEntryPage.aspx">Doctor Entry</a></li>
-                        <li><a href="MedicineStockReport.aspx">Medicine Stock Report</a></li>
-                        <li><a href="TreatmentGiven.aspx">Treatment Given</a></li>
-                        <li><a href="#">Patient History</a></li>
-
-                    </ul>
-                </li>
-               
-                <li><a href="#">Disease-Wise Report</a> </li>
-                <li><a href="#">Disease Demographic Report</a></li>
-                <li><a href="#">All Disease Bar Chart </a></li>
-               
-            </ul>
-        </nav>
-        <div class="container">
-            
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+   <div class="header">
+            <div>
+                <div>
+                    <p>Community Medicine Automation</p>
                 
-            </asp:ContentPlaceHolder>
+                </div>
+                <ul>
+                
+                    <li class="selected"><a href="Home.aspx">Home</a>
 
+                    </li>
+                    <li>
+                        <a href="DoctorEntryPage.aspx">Doctor</a>
 
+                    </li>
+                    <li>
+                        <a href="MedicineStockReport.aspx">Medicine</a>
 
+                    </li>
+                    <li>
+                        <a href="TreatmentGiven.aspx">Treatment</a>
+
+                    </li>
+                    <li>
+                        <a href="#">patient</a>
+
+                    </li>
+                        
+                    
+                    <li>
+                        <a href="DiseaseWiseReport.aspx">Report</a>
+                    </li>
+                    <li>
+                        <a href="#">Graph</a>
+                    </li>
+                    <li>
+                        <a href="BarChart.aspx">BarChart</a>
+                    </li>
+                    <li>
+                        <a href="Logout.aspx">Logout</a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
         </div>
-        <footer> Design By RGB </footer>
-    </div>
-        
-       
-    </div>
+        <div class="body">
+
+            
+
+            <div class="section">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+           
+           </div>
+
+
+
+
+        <div class="footer">
+
+            <h1>Developed & Designed By RGB</h1>
+        </div>
     </form>
 </body>
 </html>

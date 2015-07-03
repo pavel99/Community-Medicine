@@ -65,10 +65,29 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contents\css\style.css" />
+    <Content Include="Contents\fonts\forum-regular-webfont.svg" />
+    <Content Include="Contents\images\bg-body.jpg" />
+    <Content Include="Contents\images\bg-header.png" />
+    <Content Include="Contents\images\border-horizontal.gif" />
+    <Content Include="Contents\images\button-plus.png" />
+    <Content Include="Contents\images\camping.jpg" />
+    <Content Include="Contents\images\camping2.jpg" />
+    <Content Include="Contents\images\center.jpg" />
+    <Content Include="Contents\images\frame1.gif" />
+    <Content Include="Contents\images\frame2.gif" />
+    <Content Include="Contents\images\icons.png" />
+    <Content Include="Contents\images\interface.png" />
+    <Content Include="Contents\images\logo.png" />
+    <Content Include="Contents\images\shadow.png" />
+    <Content Include="Contents\images\Medicnehome.jpg" />
     <Content Include="Content\DiseaseEntry.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styles.css" />
+    <Content Include="Contents\fonts\forum-regular-webfont.eot" />
+    <Content Include="Contents\fonts\forum-regular-webfont.ttf" />
+    <Content Include="Contents\fonts\forum-regular-webfont.woff" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -131,6 +150,7 @@
     <Content Include="UI\DisplayCenterPage.aspx" />
     <Content Include="UI\DoctorEntryPage.aspx" />
     <Content Include="UI\Home.aspx" />
+    <Content Include="UI\Logout.aspx" />
     <Content Include="UI\MedicineEntryPage.aspx" />
     <Content Include="UI\MedicineStockReport.aspx" />
     <Content Include="UI\SendMedicinePage.aspx" />
@@ -236,6 +256,13 @@
     </Compile>
     <Compile Include="UI\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\MedicineEntryPage.aspx.cs">
       <DependentUpon>MedicineEntryPage.aspx</DependentUpon>

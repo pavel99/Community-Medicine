@@ -271,5 +271,23 @@ namespace CommunityMedicine.DAL
             return quantityList;
 
         }
+        public bool IsCenterNameExists(Center aCenter)
+        {
+            bool isCenterNameExists = false;
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = string.Format("Select * From Center where CenterName='{0}' and ThanaId='{1}'", aCenter.CenterName,aCenter.ThanaId);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                isCenterNameExists = true;
+                break;
+            }
+            reader.Close();
+            connection.Close();
+            return isCenterNameExists;
+        }
     }
 }

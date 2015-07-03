@@ -3,9 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <h1>WelCome   <asp:Label ID="centerNameLabel" runat="server"> to Center Home </asp:Label></h1><br/>
-        <p>Here you can add doctor <asp:Button ID="addDoctorButton" runat="server" Text="Add Doctor" OnClick="addDoctorButton_Click" /></p>
-         
-        
+        <h1>WelCome  To <asp:Label ID="centerNameLabel" runat="server"> to Center Home </asp:Label></h1><br/>
+        <img width="900px" src="../Contents/images/center.jpg" />
     </div>
 </asp:Content>

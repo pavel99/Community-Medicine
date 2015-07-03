@@ -12,13 +12,13 @@
                     <asp:Label ID="medicineLabel" runat="server" Text="Name Of Medicine With Mg/Ml"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="medicineTextBox" TextMode="MultiLine" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="medicineTextBox" TextMode="MultiLine" runat="server" Width="312px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <asp:Button ID="medicineSaveButton" runat="server" Text="Save" OnClick="medicineSaveButton_Click" />
+                    <asp:Button ID="medicineSaveButton" runat="server" Text="Save" OnClick="medicineSaveButton_Click" Height="36px" Width="139px" />
                 </td>
             </tr>
 

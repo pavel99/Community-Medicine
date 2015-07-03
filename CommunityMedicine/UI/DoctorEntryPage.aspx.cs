@@ -37,6 +37,9 @@ namespace CommunityMedicine.UI
                 msgLabel.Text = manager.SaveDoctor(aDoctor);
 
             }
+            doctorNameTextBox.Text = "";
+            doctorDegreeTextBox.Text = "";
+            specializationTextBox.Text = "";
 
         }
     }

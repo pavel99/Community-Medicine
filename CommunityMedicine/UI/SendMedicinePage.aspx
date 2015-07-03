@@ -26,22 +26,15 @@
                 <td><asp:DropDownList ID="medicineDropDownList" runat="server"></asp:DropDownList></td>
                 <td> <asp:Label ID="Label8" runat="server" Text="Quantity"></asp:Label></td>
                 <td><asp:TextBox ID="quantityTextBox" runat="server"></asp:TextBox></td>
-                <td><asp:Button ID="addButton" runat="server" Text="Add" OnClick="addButton_Click" /></td>
+                <td><asp:Button ID="addButton" runat="server" Text="Add" OnClick="addButton_Click" Width="102px" /></td>
             </tr>
             
-            <tr>
-                <td>
-                    <asp:GridView ID="medicineQuantityGridView" runat="server"></asp:GridView>
-                </td>
-                
-            </tr>
-             <tr>
-                <td><asp:Button ID="saveButton" runat="server" Text="Save" OnClick="saveButton_Click" /></td>
-                <td> </td>
-                
-            </tr>
+            
+            
 
         </table>
+        <asp:GridView ID="medicineQuantityGridView" runat="server" Width="375px"></asp:GridView>
+        <asp:Button ID="saveButton" runat="server" Text="Save" OnClick="saveButton_Click" Width="151px" />
 
         <asp:Label ID="msgLabel" runat="server"></asp:Label>
          <%--<script type ="text/javascript" >                

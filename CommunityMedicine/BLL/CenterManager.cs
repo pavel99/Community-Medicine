@@ -25,9 +25,25 @@ namespace CommunityMedicine.BLL
             return gateway.PopulateThanaDropDownList(districtId);
         }
 
-        public int Save(Center aCenter)
+        public string Save(Center aCenter)
         {
-            return gateway.Save(aCenter);
+            if (gateway.IsCenterNameExists(aCenter))
+            {
+                return "CenterName Already Exists";
+            }
+            else
+            {
+                if (gateway.Save(aCenter) > 0)
+                {
+                    return "Saved Succesfully";
+                }
+                else
+                {
+                    return "Saving failed";
+                }
+                
+            }
+            
         }
         public List<Center> PopulateCenterDropDownList(int thanaId)
         {

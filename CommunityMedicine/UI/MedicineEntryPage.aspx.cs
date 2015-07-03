@@ -33,6 +33,7 @@ namespace CommunityMedicine.UI
                 medicineTextBox.Text = string.Empty;
                 PopulateGridView();
             }
+            medicineTextBox.Text = "";
 
         }
 

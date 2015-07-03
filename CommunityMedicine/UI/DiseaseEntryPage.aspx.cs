@@ -32,6 +32,9 @@ namespace CommunityMedicine.UI
                 msgLabel.Text = manager.Save(aDisease);
                 PopulateGridView();
             }
+            diseaseNameTextBox.Text = "";
+            descriptionTextBox.Text = "";
+            procedureTextBox.Text = "";
         }
         public void PopulateGridView()
         {

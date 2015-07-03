@@ -10,7 +10,7 @@
             <tr>
                 <td><asp:Label ID="nameLabel" runat="server" Text="Name"></asp:Label></td>
                 <td>
-                    <asp:TextBox ID="doctorNameTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="doctorNameTextBox" runat="server" Width="231px"></asp:TextBox>
                 </td>
 
             </tr>
@@ -20,7 +20,7 @@
 
                 </td>
                 <td>
-                    <asp:TextBox ID="doctorDegreeTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="doctorDegreeTextBox" runat="server" Width="230px"></asp:TextBox>
                 </td>
 
             </tr>
@@ -29,12 +29,12 @@
                     <asp:Label ID="specializationLabel" runat="server" Text="Specialization"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="specializationTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="specializationTextBox" runat="server" Width="230px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="doctorSaveButton" runat="server" Text="Save" OnClick="doctorSaveButton_Click" />
+                    <asp:Button ID="doctorSaveButton" runat="server" Text="Save" OnClick="doctorSaveButton_Click" Width="165px" />
                 </td>
             </tr>
 

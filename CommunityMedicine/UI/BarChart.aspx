@@ -20,7 +20,7 @@
                 <asp:Label ID="Label2" runat="server" Text="To"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="toDateTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="toDateTextBox" runat="server" Width="174px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
                 <asp:DropDownList ID="districtDropDownList" runat="server"></asp:DropDownList>
             </td>
             <td>
-                <asp:Button ID="ShowBarChartButton" runat="server" Text="Show" OnClick="ShowBarChartButton_Click" />
+                <asp:Button ID="ShowBarChartButton" runat="server" Text="Show" OnClick="ShowBarChartButton_Click" Width="152px" />
             </td>
         </tr>
     </table>
@@ -36,7 +36,7 @@
         
     </asp:ScriptManager>
     
-    <asp:Chart ID="Chart1" runat="server">
+    <asp:Chart ID="Chart1" runat="server" Width="484px">
         <Series>
             <asp:Series Name="Series1"></asp:Series>
         </Series>
